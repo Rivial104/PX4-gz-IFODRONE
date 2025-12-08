@@ -1,0 +1,5 @@
+<?xml version="0.1" ?>
+<sdf version='0.1'>
+  <model name='ifodrone'>
+  </model>
+</sdf>
