@@ -37,7 +37,9 @@
         </geometry>
       </visual>
       <visual name="5010_motor_base_1">
-        <pose>-0.174 0.174 .032 0 0 -.45</pose>
+        <!-- <pose>-0.174 0.174 .032 0 0 -.45</pose> -->
+        <pose>-0.174 1.174 .032 0 0 -.45</pose>
+
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
