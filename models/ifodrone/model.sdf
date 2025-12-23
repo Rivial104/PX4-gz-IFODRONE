@@ -1,4 +1,188 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<sdf version="1.9">
+  <model name="ifodrone">
+
+    <!-- ================= KADŁUB ================= -->
+    <link name="base_link">
+      <pose>0 0 0 0 0 0</pose>
+
+      <inertial>
+        <mass>1.5</mass>
+        <inertia>
+          <ixx>0.02</ixx>
+          <iyy>0.02</iyy>
+          <izz>0.04</izz>
+        </inertia>
+      </inertial>
+
+      <collision name="base_collision">
+        <geometry>
+          <box>
+            <size>0.4 0.4 0.1</size>
+          </box>
+        </geometry>
+      </collision>
+
+      <visual name="base_visual">
+        <geometry>
+          <box>
+            <size>0.4 0.4 0.1</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0.2 0.2 0.2 1</ambient>
+          <diffuse>0.2 0.2 0.2 1</diffuse>
+        </material>
+      </visual>
+    </link>
+
+    <!-- ================= FUNKCJA MAKRA (LOGICZNIE) ================= -->
+    <!-- Każdy silnik = sześcian + joint obrotowy -->
+
+    <!-- ========== MOTOR 0 (czerwony) ========== -->
+    <link name="rotor_0">
+      <pose>0 0 0.15 0 0 0</pose>
+      <collision name="c">
+        <geometry><box><size>0.05 0.05 0.02</size></box></geometry>
+      </collision>
+      <visual name="v">
+        <geometry><box><size>0.05 0.05 0.02</size></box></geometry>
+        <material>
+          <diffuse>1 0 0 1</diffuse>
+        </material>
+      </visual>
+    </link>
+
+    <joint name="rotor_0_joint" type="revolute">
+      <parent>base_link</parent>
+      <child>rotor_0</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+      </axis>
+    </joint>
+
+    <!-- ========== MOTOR 1 (zielony) ========== -->
+    <link name="rotor_1">
+      <pose>0 0 -0.15 0 0 0</pose>
+      <collision name="c">
+        <geometry><box><size>0.05 0.05 0.02</size></box></geometry>
+      </collision>
+      <visual name="v">
+        <geometry><box><size>0.05 0.05 0.02</size></box></geometry>
+        <material>
+          <diffuse>0 1 0 1</diffuse>
+        </material>
+      </visual>
+    </link>
+
+    <joint name="rotor_1_joint" type="revolute">
+      <parent>base_link</parent>
+      <child>rotor_1</child>
+      <axis><xyz>0 0 1</xyz></axis>
+    </joint>
+
+    <!-- ========== MOTOR 2 (niebieski) ========== -->
+    <link name="rotor_2">
+      <pose>0 0.3 0 0 0 0</pose>
+      <collision name="c">
+        <geometry><box><size>0.05 0.05 0.02</size></box></geometry>
+      </collision>
+      <visual name="v">
+        <geometry><box><size>0.05 0.05 0.02</size></box></geometry>
+        <material>
+          <diffuse>0 0 1 1</diffuse>
+        </material>
+      </visual>
+    </link>
+
+    <joint name="rotor_2_joint" type="revolute">
+      <parent>base_link</parent>
+      <child>rotor_2</child>
+      <axis><xyz>0 0 1</xyz></axis>
+    </joint>
+
+    <!-- ========== MOTOR 3 (żółty) ========== -->
+    <link name="rotor_3">
+      <pose>0 -0.3 0 0 0 0</pose>
+      <collision name="c">
+        <geometry><box><size>0.05 0.05 0.02</size></box></geometry>
+      </collision>
+      <visual name="v">
+        <geometry><box><size>0.05 0.05 0.02</size></box></geometry>
+        <material>
+          <diffuse>1 1 0 1</diffuse>
+        </material>
+      </visual>
+    </link>
+
+    <joint name="rotor_3_joint" type="revolute">
+      <parent>base_link</parent>
+      <child>rotor_3</child>
+      <axis><xyz>0 0 1</xyz></axis>
+    </joint>
+
+    <!-- ========== MOTOR 4 (magenta) ========== -->
+    <link name="rotor_4">
+      <pose>0.3 0 0 0 0 0</pose>
+      <collision name="c">
+        <geometry><box><size>0.05 0.05 0.02</size></box></geometry>
+      </collision>
+      <visual name="v">
+        <geometry><box><size>0.05 0.05 0.02</size></box></geometry>
+        <material>
+          <diffuse>1 0 1 1</diffuse>
+        </material>
+      </visual>
+    </link>
+
+    <joint name="rotor_4_joint" type="revolute">
+      <parent>base_link</parent>
+      <child>rotor_4</child>
+      <axis><xyz>0 0 1</xyz></axis>
+    </joint>
+
+    <!-- ========== MOTOR 5 (cyan) ========== -->
+    <link name="rotor_5">
+      <pose>-0.3 0 0 0 0 0</pose>
+      <collision name="c">
+        <geometry><box><size>0.05 0.05 0.02</size></box></geometry>
+      </collision>
+      <visual name="v">
+        <geometry><box><size>0.05 0.05 0.02</size></box></geometry>
+        <material>
+          <diffuse>0 1 1 1</diffuse>
+        </material>
+      </visual>
+    </link>
+
+    <joint name="rotor_5_joint" type="revolute">
+      <parent>base_link</parent>
+      <child>rotor_5</child>
+      <axis><xyz>0 0 1</xyz></axis>
+    </joint>
+
+    <!-- ================= PLUGINS SILNIKÓW ================= -->
+    <!-- ZOSTAWIASZ SWOJE PLUGINY 1:1 – NIC TU NIE ZMIENIAJ -->
+
+    <!-- (tu dokładnie wklejasz swoje 6 pluginów MulticopterMotorModel) -->
+
+  </model>
+</sdf>
+
+
+
+
+
+
+
+
+
+
+
+<!-- STARE -->
+
+
+<!-- <?xml version="1.0" encoding="UTF-8"?>
 <sdf version='1.9'>
   <model name='ifodrone'>
     <include merge='true'>
@@ -107,4 +291,4 @@
       <motorType>velocity</motorType>
     </plugin>
   </model>
-</sdf>
+</sdf> -->
