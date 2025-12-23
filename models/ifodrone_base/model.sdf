@@ -20,9 +20,15 @@
       <velocity_decay />
       <visual name="base_link_visual">
         <pose>0 0 .025 0 0 3.141592654</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://ifodrone_base/meshes/NXP-HGD-CF.dae</uri>
+          </mesh>
+        </geometry>
       </visual>
       <visual name="5010_motor_base_0">
-        <pose>0.2 0 0 0 0 -.45</pose>
+        <pose>0.174 0.174 .032 0 0 -.45</pose>
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
@@ -31,7 +37,9 @@
         </geometry>
       </visual>
       <visual name="5010_motor_base_1">
-        <pose>0 0.2 0 0 0 -.45</pose>
+        <pose>-0.174 0.174 .032 0 0 -.45</pose>
+        <!-- <pose>-0.174 1.174 .032 0 0 -.45</pose> -->
+
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
@@ -40,7 +48,7 @@
         </geometry>
       </visual>
       <visual name="5010_motor_base_2">
-        <pose>-0.2 0 0 0 0 -.45</pose>
+        <pose>0.174 -0.174 .032 0 0 -.45</pose>
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
@@ -49,7 +57,7 @@
         </geometry>
       </visual>
       <visual name="5010_motor_base_3">
-        <pose>0 -0.2 0 0 0 -.45</pose>
+        <pose>-0.174 -0.174 .032 0 0 -.45</pose>
         <geometry>
           <mesh>
             <scale>1 1 1</scale>
@@ -66,6 +74,15 @@
             <size>.013 .007</size>
           </plane>
         </geometry>
+        <material>
+          <diffuse>1.0 1.0 1.0</diffuse>
+          <specular>1.0 1.0 1.0</specular>
+          <pbr>
+            <metal>
+              <albedo_map>model://ifodrone_base/materials/textures/nxp.png</albedo_map>
+            </metal>
+          </pbr>
+        </material>
       </visual>
       <visual name="NXP_FMUK66_TOP">
         <pose>-0.023 0 .0515 0 0 -1.57</pose>
@@ -76,7 +93,15 @@
             <size>.013 .007</size>
           </plane>
         </geometry>
-
+        <material>
+          <diffuse>1.0 1.0 1.0</diffuse>
+          <specular>1.0 1.0 1.0</specular>
+          <pbr>
+            <metal>
+              <albedo_map>model://ifodrone_base/materials/textures/nxp.png</albedo_map>
+            </metal>
+          </pbr>
+        </material>
       </visual>
       <visual name="RDDRONE_FMUK66_TOP">
         <pose>-.03 0 .0515 0 0 -1.57</pose>
@@ -87,6 +112,15 @@
             <size>.032 .0034</size>
           </plane>
         </geometry>
+        <material>
+          <diffuse>1.0 1.0 1.0</diffuse>
+          <specular>1.0 1.0 1.0</specular>
+          <pbr>
+            <metal>
+              <albedo_map>model://ifodrone_base/materials/textures/rd.png</albedo_map>
+            </metal>
+          </pbr>
+        </material>
       </visual>
       <collision name="base_link_collision_0">
         <pose>0 0 .007 0 0 0</pose>
@@ -305,6 +339,12 @@
             <uri>model://ifodrone_base/meshes/1345_prop_ccw.stl</uri>
           </mesh>
         </geometry>
+        <material>
+          <script>
+            <name>Gazebo/DarkGrey</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+        </material>
       </visual>
       <visual name="rotor_0_visual_motor_bell">
         <pose>0 0 -.032 0 0 0</pose>
@@ -372,6 +412,12 @@
             <uri>model://ifodrone_base/meshes/1345_prop_cw.stl</uri>
           </mesh>
         </geometry>
+        <material>
+          <script>
+            <name>Gazebo/DarkGrey</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+        </material>
       </visual>
       <visual name="rotor_1_visual_motor_top">
         <pose>0 0 -.032 0 0 0</pose>
