@@ -40,6 +40,7 @@
       </visual>
 <!-- ================= SENSORY ================= -->
 
+
       <sensor name="air_pressure_sensor" type="air_pressure">
         <gz_frame_id>base_link</gz_frame_id>
         <always_on>1</always_on>
