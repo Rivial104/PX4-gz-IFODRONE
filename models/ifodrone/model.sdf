@@ -2,9 +2,13 @@
 <sdf version="1.9">
   <model name="ifodrone">
 
+    <!-- START 1 METR NAD ZIEMIĄ -->
+    <pose>0 0 2 0 0 0</pose>
+
     <!-- ================= KADŁUB ================= -->
     <link name="base_link">
       <pose>0 0 0 0 0 0</pose>
+
       <inertial>
         <mass>2.0</mass>
         <inertia>
@@ -30,51 +34,270 @@
             <length>0.12</length>
           </cylinder>
         </geometry>
+        <material>
+          <diffuse>0.3 0.3 0.3 1</diffuse>
+        </material>
+      </visual>
+<!-- ================= SENSORY ================= -->
+      <sensor name="imu_sensor" type="imu">
+        <pose>0 0 0 0 0 0</pose>
+        <always_on>true</always_on>
+        <update_rate>250</update_rate>
+        <imu>
+          <angular_velocity>
+            <x><noise type="gaussian"/></x>
+            <y><noise type="gaussian"/></y>
+            <z><noise type="gaussian"/></z>
+          </angular_velocity>
+          <linear_acceleration>
+            <x><noise type="gaussian"/></x>
+            <y><noise type="gaussian"/></y>
+            <z><noise type="gaussian"/></z>
+          </linear_acceleration>
+        </imu>
+      </sensor>
+      <sensor name="barometer_sensor" type="air_pressure">
+        <pose>0 0 0 0 0 0</pose>
+        <always_on>true</always_on>
+        <update_rate>50</update_rate>
+      </sensor>
+      <sensor name="magnetometer_sensor" type="magnetometer">
+        <pose>0 0 0 0 0 0</pose>
+        <always_on>true</always_on>
+        <update_rate>50</update_rate>
+      </sensor>
+
+    </link>
+
+    <!-- ================= ROTOR 0 – GÓRA (CZERWONY) ================= -->
+    <link name="rotor_0">
+      <pose>0 0 0.1 0 0 0</pose>
+
+      <inertial>
+        <mass>0.05</mass>
+        <inertia>
+          <ixx>1e-4</ixx>
+          <iyy>1e-4</iyy>
+          <izz>1e-4</izz>
+        </inertia>
+      </inertial>
+
+      <collision name="c">
+        <geometry><cylinder><radius>0.04</radius><length>0.06</length></cylinder></geometry>
+      </collision>
+
+      <visual name="motor">
+        <geometry><cylinder><radius>0.04</radius><length>0.06</length></cylinder></geometry>
+        <material><diffuse>1 0 0 1</diffuse></material>
+      </visual>
+
+      <visual name="prop">
+        <pose>0 0 0.05 0 0 0</pose>
+        <geometry><box><size>0.35 0.01 0.005</size></box></geometry>
+        <material><diffuse>1 0.7 0.7 1</diffuse></material>
       </visual>
     </link>
 
-    <!-- ================= ROTOR 0 (GÓRA) ================= -->
-    <link name="rotor_0">
-      <pose>0 0 0.1 0 0 0</pose>
-      <collision name="c"><geometry><cylinder><radius>0.04</radius><length>0.06</length></cylinder></geometry></collision>
-      <visual name="motor"><geometry><cylinder><radius>0.04</radius><length>0.06</length></cylinder></geometry></visual>
-      <visual name="prop"><pose>0 0 0.05 0 0 0</pose><geometry><box><size>0.35 0.01 0.005</size></box></geometry></visual>
-    </link>
     <joint name="rotor_0_joint" type="revolute">
       <parent>base_link</parent>
       <child>rotor_0</child>
       <axis><xyz>0 0 1</xyz></axis>
+      <lower>-1e16</lower>
+      <upper>1e16</upper>
     </joint>
 
-    <!-- ================= ROTOR 1 (DÓŁ) ================= -->
+    <!-- ================= ROTOR 1 – DÓŁ (ZIELONY) ================= -->
     <link name="rotor_1">
       <pose>0 0 -0.1 0 0 0</pose>
-      <collision name="c"><geometry><cylinder><radius>0.04</radius><length>0.06</length></cylinder></geometry></collision>
-      <visual name="motor"><geometry><cylinder><radius>0.04</radius><length>0.06</length></cylinder></geometry></visual>
-      <visual name="prop"><pose>0 0 -0.05 0 0 0</pose><geometry><box><size>0.35 0.01 0.005</size></box></geometry></visual>
+
+      <inertial>
+        <mass>0.05</mass>
+        <inertia>
+          <ixx>1e-4</ixx>
+          <iyy>1e-4</iyy>
+          <izz>1e-4</izz>
+        </inertia>
+      </inertial>
+
+      <collision name="c">
+        <geometry><cylinder><radius>0.04</radius><length>0.06</length></cylinder></geometry>
+      </collision>
+
+      <visual name="motor">
+        <geometry><cylinder><radius>0.04</radius><length>0.06</length></cylinder></geometry>
+        <material><diffuse>0 1 0 1</diffuse></material>
+      </visual>
+
+      <visual name="prop">
+        <pose>0 0 -0.05 0 0 0</pose>
+        <geometry><box><size>0.35 0.01 0.005</size></box></geometry>
+        <material><diffuse>0.7 1 0.7 1</diffuse></material>
+      </visual>
     </link>
+
     <joint name="rotor_1_joint" type="revolute">
       <parent>base_link</parent>
       <child>rotor_1</child>
       <axis><xyz>0 0 1</xyz></axis>
+      <lower>-1e16</lower>
+      <upper>1e16</upper>
     </joint>
 
-    <!-- ================= ROTORY BOCZNE ================= -->
-    <link name="rotor_2"><pose>0.35 0 0 0 1.5708 0</pose></link>
-    <joint name="rotor_2_joint" type="revolute"><parent>base_link</parent><child>rotor_2</child><axis><xyz>1 0 0</xyz></axis></joint>
+    <!-- ================= ROTOR 2 – PRZÓD (NIEBIESKI) ================= -->
+    <link name="rotor_2">
+      <pose>0.35 0 0 0 1.5708 0</pose>
 
-    <link name="rotor_3"><pose>0 -0.35 0 1.5708 0 0</pose></link>
-    <joint name="rotor_3_joint" type="revolute"><parent>base_link</parent><child>rotor_3</child><axis><xyz>0 -1 0</xyz></axis></joint>
+      <inertial>
+        <mass>0.05</mass>
+        <inertia>
+          <ixx>1e-4</ixx>
+          <iyy>1e-4</iyy>
+          <izz>1e-4</izz>
+        </inertia>
+      </inertial>
 
-    <link name="rotor_4"><pose>-0.35 0 0 0 1.5708 0</pose></link>
-    <joint name="rotor_4_joint" type="revolute"><parent>base_link</parent><child>rotor_4</child><axis><xyz>-1 0 0</xyz></axis></joint>
+      <collision name="c">
+        <geometry><cylinder><radius>0.04</radius><length>0.06</length></cylinder></geometry>
+      </collision>
 
-    <link name="rotor_5"><pose>0 0.35 0 1.5708 0 0</pose></link>
-    <joint name="rotor_5_joint" type="revolute"><parent>base_link</parent><child>rotor_5</child><axis><xyz>0 1 0</xyz></axis></joint>
+      <visual name="motor">
+        <geometry><cylinder><radius>0.04</radius><length>0.06</length></cylinder></geometry>
+        <material><diffuse>0 0 1 1</diffuse></material>
+      </visual>
 
-    <!-- ================= PLUGINS (OBOWIĄZKOWE) ================= -->
-    <!-- ONE GENERUJĄ SIŁĘ -->
+      <visual name="prop">
+        <pose>-0.05 0 0 0 0 0</pose>
+        <geometry><box><size>0.35 0.01 0.005</size></box></geometry>
+        <material><diffuse>0.7 0.7 1 1</diffuse></material>
+      </visual>
+    </link>
 
+    <joint name="rotor_2_joint" type="revolute">
+      <parent>base_link</parent>
+      <child>rotor_2</child>
+      <axis><xyz>1 0 0</xyz></axis>
+      <lower>-1e16</lower>
+      <upper>1e16</upper>
+    </joint>
+
+    <!-- ================= ROTOR 3 – PRAWO (ŻÓŁTY) ================= -->
+    <link name="rotor_3">
+      <pose>0 -0.35 0 1.5708 0 0</pose>
+
+      <inertial>
+        <mass>0.05</mass>
+        <inertia>
+          <ixx>1e-4</ixx>
+          <iyy>1e-4</iyy>
+          <izz>1e-4</izz>
+        </inertia>
+      </inertial>
+
+      <collision name="c">
+        <geometry><cylinder><radius>0.04</radius><length>0.06</length></cylinder></geometry>
+      </collision>
+
+      <visual name="motor">
+        <geometry><cylinder><radius>0.04</radius><length>0.06</length></cylinder></geometry>
+        <material><diffuse>1 1 0 1</diffuse></material>
+      </visual>
+
+      <visual name="prop">
+        <pose>0.05 0 0 0 0 0</pose>
+        <geometry><box><size>0.35 0.01 0.005</size></box></geometry>
+        <material><diffuse>1 1 0.7 1</diffuse></material>
+      </visual>
+    </link>
+
+    <joint name="rotor_3_joint" type="revolute">
+      <parent>base_link</parent>
+      <child>rotor_3</child>
+      <axis><xyz>0 -1 0</xyz></axis>
+      <lower>-1e16</lower>
+      <upper>1e16</upper>
+    </joint>
+
+    <!-- ================= ROTOR 4 – TYŁ (MAGENTA) ================= -->
+    <link name="rotor_4">
+      <pose>-0.35 0 0 0 1.5708 0</pose>
+
+      <inertial>
+        <mass>0.05</mass>
+        <inertia>
+          <ixx>1e-4</ixx>
+          <iyy>1e-4</iyy>
+          <izz>1e-4</izz>
+        </inertia>
+      </inertial>
+
+      <collision name="c">
+        <geometry><cylinder><radius>0.04</radius><length>0.06</length></cylinder></geometry>
+      </collision>
+
+      <visual name="motor">
+        <geometry><cylinder><radius>0.04</radius><length>0.06</length></cylinder></geometry>
+        <material><diffuse>1 0 1 1</diffuse></material>
+      </visual>
+
+      <visual name="prop">
+        <pose>0.05 0 0 0 0 0</pose>
+        <geometry><box><size>0.35 0.01 0.005</size></box></geometry>
+        <material><diffuse>1 0.7 1 1</diffuse></material>
+      </visual>
+    </link>
+
+    <joint name="rotor_4_joint" type="revolute">
+      <parent>base_link</parent>
+      <child>rotor_4</child>
+      <axis><xyz>-1 0 0</xyz></axis>
+      <lower>-1e16</lower>
+      <upper>1e16</upper>
+    </joint>
+
+    <!-- ================= ROTOR 5 – LEWO (CYAN) ================= -->
+    <link name="rotor_5">
+      <pose>0 0.35 0 1.5708 0 0</pose>
+
+      <inertial>
+        <mass>0.05</mass>
+        <inertia>
+          <ixx>1e-4</ixx>
+          <iyy>1e-4</iyy>
+          <izz>1e-4</izz>
+        </inertia>
+      </inertial>
+
+      <collision name="c">
+        <geometry><cylinder><radius>0.04</radius><length>0.06</length></cylinder></geometry>
+      </collision>
+
+      <visual name="motor">
+        <geometry><cylinder><radius>0.04</radius><length>0.06</length></cylinder></geometry>
+        <material><diffuse>0 1 1 1</diffuse></material>
+      </visual>
+
+      <visual name="prop">
+        <pose>-0.05 0 0 0 0 0</pose>
+        <geometry><box><size>0.35 0.01 0.005</size></box></geometry>
+        <material><diffuse>0.7 1 1 1</diffuse></material>
+      </visual>
+    </link>
+
+    <joint name="rotor_5_joint" type="revolute">
+      <parent>base_link</parent>
+      <child>rotor_5</child>
+      <axis><xyz>0 1 0</xyz></axis>
+      <lower>-1e16</lower>
+      <upper>1e16</upper>
+    </joint>
+
+    <!-- ================= PLUGINS – GENERUJĄ SIŁĘ ================= -->
+    <!-- (DOKŁADNIE JAK WCZEŚNIEJ, NIE ZMIENIAJ) -->
+    <!-- SENSORY -->
+    <plugin filename="gz-sim-sensors-system"
+          name="gz::sim::systems::Sensors"/>
+
+    <!-- motor 0 -->
     <plugin filename="gz-sim-multicopter-motor-model-system"
             name="gz::sim::systems::MulticopterMotorModel">
       <jointName>rotor_0_joint</jointName>
@@ -85,6 +308,7 @@
       <motorType>velocity</motorType>
     </plugin>
 
+    <!-- motor 1 -->
     <plugin filename="gz-sim-multicopter-motor-model-system"
             name="gz::sim::systems::MulticopterMotorModel">
       <jointName>rotor_1_joint</jointName>
@@ -95,6 +319,7 @@
       <motorType>velocity</motorType>
     </plugin>
 
+    <!-- motor 2 -->
     <plugin filename="gz-sim-multicopter-motor-model-system"
             name="gz::sim::systems::MulticopterMotorModel">
       <jointName>rotor_2_joint</jointName>
@@ -105,6 +330,7 @@
       <motorType>velocity</motorType>
     </plugin>
 
+    <!-- motor 3 -->
     <plugin filename="gz-sim-multicopter-motor-model-system"
             name="gz::sim::systems::MulticopterMotorModel">
       <jointName>rotor_3_joint</jointName>
@@ -115,6 +341,7 @@
       <motorType>velocity</motorType>
     </plugin>
 
+    <!-- motor 4 -->
     <plugin filename="gz-sim-multicopter-motor-model-system"
             name="gz::sim::systems::MulticopterMotorModel">
       <jointName>rotor_4_joint</jointName>
@@ -125,6 +352,7 @@
       <motorType>velocity</motorType>
     </plugin>
 
+    <!-- motor 5 -->
     <plugin filename="gz-sim-multicopter-motor-model-system"
             name="gz::sim::systems::MulticopterMotorModel">
       <jointName>rotor_5_joint</jointName>
@@ -137,6 +365,7 @@
 
   </model>
 </sdf>
+
 
 
 
