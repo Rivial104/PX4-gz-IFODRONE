@@ -8,7 +8,6 @@
     <!-- ================= KADŁUB ================= -->
     <link name="base_link">
       <pose>0 0 0 0 0 0</pose>
-
       <inertial>
         <mass>2.0</mass>
         <inertia>
@@ -39,6 +38,48 @@
         </material>
       </visual>
 
+      <!-- LEG FRONT RIGHT -->
+      <collision name="leg_front_right_collision">
+        <pose>0.3 -0.3 -0.20 -0.7854 0 0.7854</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.015</radius>
+            <length>0.34</length>
+          </cylinder>
+        </geometry>
+      </collision>
+
+      <visual name="leg_front_right_visual">
+        <pose>0.3 -0.3 -0.20 -0.7854 0 0.7854</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.015</radius>
+            <length>0.34</length>
+          </cylinder>
+        </geometry>
+      </visual>
+
+      <!-- LEG FRONT LEFT -->
+      <collision name="leg_front_left_collision">
+        <pose>0.3 0.3 -0.20 -0.7854 0 2.3562</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.015</radius>
+            <length>0.34</length>
+          </cylinder>
+        </geometry>
+      </collision>
+
+      <visual name="leg_front_left_visual">
+        <pose>0.3 0.3 -0.20 -0.7854 0 2.3562</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.015</radius>
+            <length>0.34</length>
+          </cylinder>
+        </geometry>
+      </visual>
+
       <!-- LEG BACK RIGHT -->
       <collision name="leg_back_right_collision">
         <pose>-0.3 -0.3 -0.20 -0.7854 0 -0.7854</pose>
@@ -62,7 +103,7 @@
 
       <!-- LEG BACK LEFT -->
       <collision name="leg_back_left_collision">
-        <pose> -0.3 0.3 -0.20  0.7854 0  -0.7854</pose>
+        <pose>-0.3 0.3 -0.20 -0.7854 0 -2.3562</pose>
         <geometry>
           <cylinder>
             <radius>0.015</radius>
@@ -72,7 +113,7 @@
       </collision>
 
       <visual name="leg_back_left_visual">
-        <pose>-0.3 -0.3 -0.20 -0.7854 0 -0.7854</pose>
+        <pose>-0.3 0.3 -0.20 -0.7854 0 -2.3562</pose>
         <geometry>
           <cylinder>
             <radius>0.015</radius>
@@ -83,7 +124,8 @@
 
 <!-- ================= SENSORY ================= -->
       <sensor name="air_pressure_sensor" type="air_pressure">
-        <gz_frame_id>base_link</gz_frame_id>
+        <!-- <gz_frame_id>base_link</gz_frame_id> -->
+        <pose>0 0 0 0 0 0</pose>
         <always_on>1</always_on>
         <update_rate>50</update_rate>
         <air_pressure>
@@ -97,7 +139,8 @@
         </air_pressure>
       </sensor>
       <sensor name="magnetometer_sensor" type="magnetometer">
-        <gz_frame_id>base_link</gz_frame_id>
+        <!-- <gz_frame_id>base_link</gz_frame_id> -->
+        <pose>0 0 0 0 0 0</pose>
         <always_on>1</always_on>
         <update_rate>100</update_rate>
         <magnetometer>
@@ -123,7 +166,8 @@
         </magnetometer>
       </sensor>
       <sensor name="imu_sensor" type="imu">
-        <gz_frame_id>base_link</gz_frame_id>
+        <!-- <gz_frame_id>base_link</gz_frame_id> -->
+        <pose>0 0 0 0 0 0</pose>
         <always_on>1</always_on>
         <update_rate>250</update_rate>
         <imu>
@@ -175,13 +219,14 @@
         </imu>
       </sensor>
       <sensor name="navsat_sensor" type="navsat">
-        <gz_frame_id>base_link</gz_frame_id>
+        <!-- <gz_frame_id>base_link</gz_frame_id> -->
+        <pose>0 0 0 0 0 0</pose>
         <always_on>1</always_on>
         <update_rate>30</update_rate>
       </sensor>
     </link>
 
-    <!-- ================= ROTOR 0 – GÓRA (CZERWONY) ================= -->
+    <!-- ================= ROTOR 0 – MAIN ROTOR UP (RED) ================= -->
     <link name="rotor_0">
       <pose>0 0 0.1 0 0 0</pose>
 
@@ -203,14 +248,16 @@
         </geometry>
       </collision>
 
-      <visual name="motor">
+      <visual name="motor_0">
         <geometry>
           <cylinder>
             <radius>0.06</radius>
             <length>0.09</length>
           </cylinder>
         </geometry>
-        <material><diffuse>1 0 0 1</diffuse></material>
+        <material>
+          <diffuse>1 0 0 1</diffuse>
+        </material>
       </visual>
 
       <visual name="prop_0">
@@ -221,7 +268,7 @@
           </box>
         </geometry>
         <material>
-          <diffuse>1 0.7 0.7 1</diffuse>
+          <diffuse>1 0 0 1</diffuse>
         </material>
       </visual>
     </link>
@@ -232,7 +279,7 @@
       <axis><xyz>0 0 1</xyz></axis>
     </joint>
 
-    <!-- ================= ROTOR 1 – DÓŁ (ZIELONY) ================= -->
+    <!-- ================= ROTOR 1 – MAIN ROTOR DOWN (GREEN) ================= -->
     <link name="rotor_1">
       <pose>0 0 -0.1 0 0 0</pose>
 
@@ -254,14 +301,16 @@
         </geometry>
       </collision>
 
-      <visual name="motor">
+      <visual name="motor_1">
         <geometry>
           <cylinder>
             <radius>0.06</radius>
             <length>0.09</length>
           </cylinder>
         </geometry>
-      <material><diffuse>0 1 0 1</diffuse></material>
+      <material>
+        <diffuse>0 1 0 1</diffuse>
+      </material>
       </visual>
 
       <visual name="prop_1">
@@ -271,9 +320,9 @@
             <size>0.58 0.02 0.01</size>
           </box>
         </geometry>
-        <material>
-          <diffuse>1 0.7 0.7 1</diffuse>
-        </material>
+      <material>
+        <diffuse>0 1 0 1</diffuse>
+      </material>
       </visual>
     </link>
 
@@ -283,7 +332,7 @@
       <axis><xyz>0 0 1</xyz></axis>
     </joint>
 
-    <!-- ================= ROTOR 2 – PRZÓD (NIEBIESKI) ================= -->
+    <!-- ================= ROTOR 2 – FRONT EDF (BLUE) ================= -->
     <link name="rotor_2">
       <pose>0.35 0 0 0 1.5708 0</pose>
 
@@ -297,18 +346,36 @@
       </inertial>
 
       <collision name="c">
-        <geometry><cylinder><radius>0.04</radius><length>0.06</length></cylinder></geometry>
+        <geometry>
+        <cylinder>
+        <radius>0.02</radius>
+        <length>0.04</length>
+        </cylinder>
+        </geometry>
       </collision>
 
-      <visual name="motor">
-        <geometry><cylinder><radius>0.04</radius><length>0.06</length></cylinder></geometry>
-        <material><diffuse>0 0 1 1</diffuse></material>
+      <visual name="motor_2">
+        <geometry>
+          <cylinder>
+            <radius>0.02</radius>
+            <length>0.04</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <diffuse>0 0 1 1</diffuse>
+        </material>
       </visual>
 
-      <visual name="prop">
-        <pose>-0.05 0 0 0 0 0</pose>
-        <geometry><box><size>0.35 0.01 0.005</size></box></geometry>
-        <material><diffuse>0.7 0.7 1 1</diffuse></material>
+      <visual name="prop_2">
+        <pose>0 0 0.02 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.15 0.01 0.005</size>
+          </box>
+        </geometry>
+        <material>
+          <diffuse>0 0 1 1</diffuse>
+        </material>
       </visual>
     </link>
 
@@ -318,7 +385,7 @@
       <axis><xyz>1 0 0</xyz></axis>
     </joint>
 
-    <!-- ================= ROTOR 3 – PRAWO (ŻÓŁTY) ================= -->
+    <!-- ================= ROTOR 3 – RIGHT EDF (YELLOW) ================= -->
     <link name="rotor_3">
       <pose>0 -0.35 0 1.5708 0 0</pose>
 
@@ -332,18 +399,36 @@
       </inertial>
 
       <collision name="c">
-        <geometry><cylinder><radius>0.04</radius><length>0.06</length></cylinder></geometry>
+        <geometry>
+          <cylinder>
+            <radius>0.02</radius>
+            <length>0.04</length>
+          </cylinder>
+        </geometry>
       </collision>
 
-      <visual name="motor">
-        <geometry><cylinder><radius>0.04</radius><length>0.06</length></cylinder></geometry>
-        <material><diffuse>1 1 0 1</diffuse></material>
+      <visual name="motor_3">
+        <geometry>
+          <cylinder>
+            <radius>0.02</radius>
+            <length>0.04</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <diffuse>1 1 0 1</diffuse>
+        </material>
       </visual>
 
-      <visual name="prop">
-        <pose>0.05 0 0 0 0 0</pose>
-        <geometry><box><size>0.35 0.01 0.005</size></box></geometry>
-        <material><diffuse>1 1 0.7 1</diffuse></material>
+      <visual name="prop_3">
+        <pose>0 0 0.02 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.15 0.01 0.005</size>
+          </box>
+        </geometry>
+        <material>
+          <diffuse>1 1 0 1</diffuse>
+        </material>
       </visual>
     </link>
 
@@ -353,7 +438,7 @@
       <axis><xyz>0 -1 0</xyz></axis>
     </joint>
 
-    <!-- ================= ROTOR 4 – TYŁ (MAGENTA) ================= -->
+    <!-- ================= ROTOR 4 – BACK EDF (MAGENTA) ================= -->
     <link name="rotor_4">
       <pose>-0.35 0 0 0 1.5708 0</pose>
 
@@ -367,18 +452,36 @@
       </inertial>
 
       <collision name="c">
-        <geometry><cylinder><radius>0.04</radius><length>0.06</length></cylinder></geometry>
+        <geometry>
+          <cylinder>
+            <radius>0.02</radius>
+            <length>0.04</length>
+          </cylinder>
+        </geometry>
       </collision>
 
-      <visual name="motor">
-        <geometry><cylinder><radius>0.04</radius><length>0.06</length></cylinder></geometry>
-        <material><diffuse>1 0 1 1</diffuse></material>
+      <visual name="motor_4">
+        <geometry>
+          <cylinder>
+            <radius>0.02</radius>
+            <length>0.04</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <diffuse>1 0 1 1</diffuse>
+        </material>
       </visual>
 
-      <visual name="prop">
-        <pose>0.05 0 0 0 0 0</pose>
-        <geometry><box><size>0.35 0.01 0.005</size></box></geometry>
-        <material><diffuse>1 0.7 1 1</diffuse></material>
+      <visual name="prop_4">
+        <pose>0 0 -0.02 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.15 0.01 0.005</size>
+          </box>
+        </geometry>
+        <material>
+          <diffuse>1 0 1 1</diffuse>
+        </material>
       </visual>
     </link>
 
@@ -388,7 +491,7 @@
       <axis><xyz>-1 0 0</xyz></axis>
     </joint>
 
-    <!-- ================= ROTOR 5 – LEWO (CYAN) ================= -->
+    <!-- ================= ROTOR 5 – LEFT EDF (CYAN) ================= -->
     <link name="rotor_5">
       <pose>0 0.35 0 1.5708 0 0</pose>
 
@@ -402,18 +505,36 @@
       </inertial>
 
       <collision name="c">
-        <geometry><cylinder><radius>0.04</radius><length>0.06</length></cylinder></geometry>
+        <geometry>
+          <cylinder>
+            <radius>0.02</radius>
+            <length>0.04</length>
+          </cylinder>
+        </geometry>
       </collision>
 
-      <visual name="motor">
-        <geometry><cylinder><radius>0.04</radius><length>0.06</length></cylinder></geometry>
-        <material><diffuse>0 1 1 1</diffuse></material>
+      <visual name="motor_5">
+        <geometry>
+          <cylinder>
+            <radius>0.02</radius>
+            <length>0.04</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <diffuse>0 1 1 1</diffuse>
+        </material>
       </visual>
 
-      <visual name="prop">
-        <pose>-0.05 0 0 0 0 0</pose>
-        <geometry><box><size>0.35 0.01 0.005</size></box></geometry>
-        <material><diffuse>0.7 1 1 1</diffuse></material>
+      <visual name="prop_5">
+        <pose>0 0 -0.02 0 0 0</pose>
+        <geometry>
+          <box>
+          <size>0.15 0.01 0.005</size>
+          </box>
+        </geometry>
+        <material>
+          <diffuse>0 1 1 1</diffuse>
+        </material>
       </visual>
     </link>
 
