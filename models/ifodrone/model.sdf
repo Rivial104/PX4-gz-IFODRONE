@@ -334,7 +334,7 @@
 
     <!-- ================= ROTOR 2 – FRONT EDF (BLUE) ================= -->
     <link name="rotor_2">
-      <pose>0.35 0 0 0 0.7854 0</pose>
+      <pose>0.35 0 0 0 1.57 0</pose>
 
       <inertial>
         <mass>0.05</mass>
@@ -382,12 +382,12 @@
     <joint name="rotor_2_joint" type="revolute">
       <parent>base_link</parent>
       <child>rotor_2</child>
-      <axis><xyz>1 0 0</xyz></axis>
+      <axis><xyz>0 0 1</xyz></axis>
     </joint>
 
     <!-- ================= ROTOR 3 – RIGHT EDF (YELLOW) ================= -->
     <link name="rotor_3">
-      <pose>0 -0.35 0 0.7854 0 0</pose>
+      <pose>0 -0.35 0 1.57 0 0</pose>
 
       <inertial>
         <mass>0.05</mass>
@@ -435,12 +435,12 @@
     <joint name="rotor_3_joint" type="revolute">
       <parent>base_link</parent>
       <child>rotor_3</child>
-      <axis><xyz>0 -1 0</xyz></axis>
+      <axis><xyz>0 0 -1</xyz></axis>
     </joint>
 
     <!-- ================= ROTOR 4 – BACK EDF (MAGENTA) ================= -->
     <link name="rotor_4">
-      <pose>-0.35 0 0 0 0.7854 0</pose>
+      <pose>-0.35 0 0 0 1.57 0</pose>
 
       <inertial>
         <mass>0.05</mass>
@@ -488,12 +488,12 @@
     <joint name="rotor_4_joint" type="revolute">
       <parent>base_link</parent>
       <child>rotor_4</child>
-      <axis><xyz>-1 0 0</xyz></axis>
+      <axis><xyz>0 0 -1</xyz></axis>
     </joint>
 
     <!-- ================= ROTOR 5 – LEFT EDF (CYAN) ================= -->
     <link name="rotor_5">
-      <pose>0 0.35 0 0.7854 0 0</pose>
+      <pose>0 0.35 0 1.57 0 0</pose>
 
       <inertial>
         <mass>0.05</mass>
@@ -541,7 +541,7 @@
     <joint name="rotor_5_joint" type="revolute">
       <parent>base_link</parent>
       <child>rotor_5</child>
-      <axis><xyz>0 1 0</xyz></axis>
+      <axis><xyz>0 0 1</xyz></axis>
     </joint>
 
     <!-- ================= PLUGINS – GENERUJĄ SIŁĘ ================= -->
