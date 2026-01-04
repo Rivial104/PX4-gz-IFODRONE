@@ -3,7 +3,7 @@
   <model name="ifodrone">
 
     <!-- START 1 METR NAD ZIEMIĄ -->
-    <pose>0 0 1 0 0 0</pose>
+    <pose>0 0 0.4 0 0 0</pose>
 
     <!-- ================= KADŁUB ================= -->
     <link name="base_link">
@@ -334,7 +334,7 @@
 
     <!-- ================= ROTOR 2 – FRONT EDF (BLUE) ================= -->
     <link name="rotor_2">
-      <pose>0.35 0 0 0 1.5708 0</pose>
+      <pose>0.35 0 0 0 0.7854 0</pose>
 
       <inertial>
         <mass>0.05</mass>
@@ -387,7 +387,7 @@
 
     <!-- ================= ROTOR 3 – RIGHT EDF (YELLOW) ================= -->
     <link name="rotor_3">
-      <pose>0 -0.35 0 1.5708 0 0</pose>
+      <pose>0 -0.35 0 0.7854 0 0</pose>
 
       <inertial>
         <mass>0.05</mass>
@@ -440,7 +440,7 @@
 
     <!-- ================= ROTOR 4 – BACK EDF (MAGENTA) ================= -->
     <link name="rotor_4">
-      <pose>-0.35 0 0 0 1.5708 0</pose>
+      <pose>-0.35 0 0 0 0.7854 0</pose>
 
       <inertial>
         <mass>0.05</mass>
@@ -493,13 +493,13 @@
 
     <!-- ================= ROTOR 5 – LEFT EDF (CYAN) ================= -->
     <link name="rotor_5">
-      <pose>0 0.35 0 1.5708 0 0</pose>
+      <pose>0 0.35 0 0.7854 0 0</pose>
 
       <inertial>
         <mass>0.05</mass>
         <inertia>
           <ixx>1e-4</ixx>
-          <iyy>1e-4</iyy>
+          <iyy>1e-4</iyy> 0 0
           <izz>1e-4</izz>
         </inertia>
       </inertial>
