@@ -332,216 +332,465 @@
       <axis><xyz>0 0 1</xyz></axis>
     </joint>
 
-    <!-- ================= ROTOR 2 – FRONT EDF (BLUE) ================= -->
-    <link name="rotor_2">
-      <pose>0.35 0 0 0 1.57 0</pose>
-
+    <!-- ================= MOTOR 2 – FRONT TILT MOTOR (BLUE) ================= -->
+    <link name='motor_2'>
+      <pose>0.5 0 0.045 0 1.570 0</pose>
       <inertial>
+        <pose>0 0 0 0 0 0</pose>
         <mass>0.05</mass>
         <inertia>
-          <ixx>1e-4</ixx>
-          <iyy>1e-4</iyy>
-          <izz>1e-4</izz>
+          <ixx>0.0166704</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.0166704</iyy>
+          <iyz>0</iyz>
+          <izz>0.0167604</izz>
         </inertia>
       </inertial>
-
-      <collision name="c">
-        <geometry>
-        <cylinder>
-        <radius>0.02</radius>
-        <length>0.04</length>
-        </cylinder>
-        </geometry>
-      </collision>
-
-      <visual name="motor_2">
+      <collision name='motor_2_collision'>
+        <pose>0 0 0 0 0 0</pose>
         <geometry>
           <cylinder>
+            <length>0.035</length>
             <radius>0.02</radius>
-            <length>0.04</length>
+          </cylinder>
+        </geometry>
+        <surface>
+          <contact><ode /></contact>
+          <friction><ode /></friction>
+        </surface>
+      </collision>
+      <visual name='motor_2_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.035</length>
+            <radius>0.02</radius>
           </cylinder>
         </geometry>
         <material>
-          <diffuse>0 0 1 1</diffuse>
+          <ambient>0 0 1 1.0</ambient>
+          <diffuse>0 0 1 1.0</diffuse>
         </material>
       </visual>
-
-      <visual name="prop_2">
-        <pose>0 0 0.02 0 0 0</pose>
-        <geometry>
-          <box>
-            <size>0.15 0.01 0.005</size>
-          </box>
-        </geometry>
-        <material>
-          <diffuse>0 0 1 1</diffuse>
-        </material>
-      </visual>
+      <gravity>1</gravity>
+      <velocity_decay />
+      <self_collide>0</self_collide>
     </link>
 
-    <joint name="rotor_2_joint" type="revolute">
+    <joint name='motor_2_joint' type='revolute'>
+      <child>motor_2</child>
       <parent>base_link</parent>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>-1.57</lower>
+          <upper>1.57</upper>
+        </limit>
+        <dynamics>
+          <friction>1.0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+
+    <link name='rotor_2'>
+      <pose>0.535 0 0.045 0 1.57 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>0.005</mass>
+        <inertia>
+          <ixx>9.75e-07</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.000166704</iyy>
+          <iyz>0</iyz>
+          <izz>0.000167604</izz>
+        </inertia>
+      </inertial>
+      <visual name='rotor_2_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://standard_vtol/meshes/iris_prop_cw.dae</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0 0 1 1.0</ambient>
+          <diffuse>0 0 1 1.0</diffuse>
+        </material>
+      </visual>
+      <gravity>1</gravity>
+      <velocity_decay />
+      <self_collide>0</self_collide>
+    </link>
+
+    <joint name='rotor_2_joint' type='revolute'>
       <child>rotor_2</child>
-      <axis><xyz>0 0 1</xyz></axis>
+      <parent>motor_2</parent>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
     </joint>
 
-    <!-- ================= ROTOR 3 – RIGHT EDF (YELLOW) ================= -->
-    <link name="rotor_3">
-      <pose>0 -0.35 0 1.57 0 0</pose>
-
+    <!-- ================= MOTOR 3 – RIGHT TILT MOTOR (YELLOW) ================= -->
+    <link name='motor_3'>
+      <pose>0 -0.5 0.045 1.570 0 0</pose>
       <inertial>
+        <pose>0 0 0 0 0 0</pose>
         <mass>0.05</mass>
         <inertia>
-          <ixx>1e-4</ixx>
-          <iyy>1e-4</iyy>
-          <izz>1e-4</izz>
+          <ixx>0.0166704</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.0166704</iyy>
+          <iyz>0</iyz>
+          <izz>0.0167604</izz>
         </inertia>
       </inertial>
-
-      <collision name="c">
+      <collision name='motor_3_collision'>
+        <pose>0 0 0 0 0 0</pose>
         <geometry>
           <cylinder>
+            <length>0.035</length>
             <radius>0.02</radius>
-            <length>0.04</length>
           </cylinder>
         </geometry>
+        <surface>
+          <contact><ode /></contact>
+          <friction><ode /></friction>
+        </surface>
       </collision>
-
-      <visual name="motor_3">
+      <visual name='motor_3_visual'>
+        <pose>0 0 0 0 0 0</pose>
         <geometry>
           <cylinder>
+            <length>0.035</length>
             <radius>0.02</radius>
-            <length>0.04</length>
           </cylinder>
         </geometry>
         <material>
-          <diffuse>1 1 0 1</diffuse>
+          <ambient>1 1 0 1.0</ambient>
+          <diffuse>1 1 0 1.0</diffuse>
         </material>
       </visual>
-
-      <visual name="prop_3">
-        <pose>0 0 0.02 0 0 0</pose>
-        <geometry>
-          <box>
-            <size>0.15 0.01 0.005</size>
-          </box>
-        </geometry>
-        <material>
-          <diffuse>1 1 0 1</diffuse>
-        </material>
-      </visual>
+      <gravity>1</gravity>
+      <velocity_decay />
+      <self_collide>0</self_collide>
     </link>
 
-    <joint name="rotor_3_joint" type="revolute">
+    <joint name='motor_3_joint' type='revolute'>
+      <child>motor_3</child>
       <parent>base_link</parent>
+      <axis>
+        <xyz>1 0 0</xyz>
+        <limit>
+          <lower>-1.57</lower>
+          <upper>1.57</upper>
+        </limit>
+        <dynamics>
+          <friction>1.0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+
+    <link name='rotor_3'>
+      <!-- roll +90 deg: prop +Z points outward (FRD +Y, right), matching CA_ROTOR3 axis -->
+      <pose>0 -0.535 0.045 1.57 0 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>0.005</mass>
+        <inertia>
+          <ixx>9.75e-07</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.000166704</iyy>
+          <iyz>0</iyz>
+          <izz>0.000167604</izz>
+        </inertia>
+      </inertial>
+      <visual name='rotor_3_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://standard_vtol/meshes/iris_prop_ccw.dae</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>1 1 0 1.0</ambient>
+          <diffuse>1 1 0 1.0</diffuse>
+        </material>
+      </visual>
+      <gravity>1</gravity>
+      <velocity_decay />
+      <self_collide>0</self_collide>
+    </link>
+
+    <joint name='rotor_3_joint' type='revolute'>
       <child>rotor_3</child>
-      <axis><xyz>0 0 -1</xyz></axis>
+      <parent>motor_3</parent>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
     </joint>
 
-    <!-- ================= ROTOR 4 – BACK EDF (MAGENTA) ================= -->
-    <link name="rotor_4">
-      <pose>-0.35 0 0 0 1.57 0</pose>
-
+    <!-- ================= MOTOR 4 – BACK TILT MOTOR (MAGENTA) ================= -->
+    <link name='motor_4'>
+      <pose>-0.5 0 0.045 0 -1.570 0</pose>
       <inertial>
+        <pose>0 0 0 0 0 0</pose>
         <mass>0.05</mass>
         <inertia>
-          <ixx>1e-4</ixx>
-          <iyy>1e-4</iyy>
-          <izz>1e-4</izz>
+          <ixx>0.0166704</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.0166704</iyy>
+          <iyz>0</iyz>
+          <izz>0.0167604</izz>
         </inertia>
       </inertial>
-
-      <collision name="c">
+      <collision name='motor_4_collision'>
+        <pose>0 0 0 0 0 0</pose>
         <geometry>
           <cylinder>
+            <length>0.035</length>
             <radius>0.02</radius>
-            <length>0.04</length>
           </cylinder>
         </geometry>
+        <surface>
+          <contact><ode /></contact>
+          <friction><ode /></friction>
+        </surface>
       </collision>
-
-      <visual name="motor_4">
+      <visual name='motor_4_visual'>
+        <pose>0 0 0 0 0 0</pose>
         <geometry>
           <cylinder>
+            <length>0.035</length>
             <radius>0.02</radius>
-            <length>0.04</length>
           </cylinder>
         </geometry>
         <material>
-          <diffuse>1 0 1 1</diffuse>
+          <ambient>1 0 1 1.0</ambient>
+          <diffuse>1 0 1 1.0</diffuse>
         </material>
       </visual>
-
-      <visual name="prop_4">
-        <pose>0 0 -0.02 0 0 0</pose>
-        <geometry>
-          <box>
-            <size>0.15 0.01 0.005</size>
-          </box>
-        </geometry>
-        <material>
-          <diffuse>1 0 1 1</diffuse>
-        </material>
-      </visual>
+      <gravity>1</gravity>
+      <velocity_decay />
+      <self_collide>0</self_collide>
     </link>
 
-    <joint name="rotor_4_joint" type="revolute">
+    <joint name='motor_4_joint' type='revolute'>
+      <child>motor_4</child>
       <parent>base_link</parent>
+      <axis>
+        <xyz>0 -1 0</xyz>
+        <limit>
+          <lower>-1.57</lower>
+          <upper>1.57</upper>
+        </limit>
+        <dynamics>
+          <friction>1.0</friction>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+
+    <link name='rotor_4'>
+      <pose>-0.535 0 0.045 0 -1.57 0</pose>
+      <inertial>
+        <pose>0 0 0 0 0 0</pose>
+        <mass>0.005</mass>
+        <inertia>
+          <ixx>9.75e-07</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.000166704</iyy>
+          <iyz>0</iyz>
+          <izz>0.000167604</izz>
+        </inertia>
+      </inertial>
+      <visual name='rotor_4_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://standard_vtol/meshes/iris_prop_cw.dae</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>1 0 1 1.0</ambient>
+          <diffuse>1 0 1 1.0</diffuse>
+        </material>
+      </visual>
+      <gravity>1</gravity>
+      <velocity_decay />
+      <self_collide>0</self_collide>
+    </link>
+
+    <joint name='rotor_4_joint' type='revolute'>
       <child>rotor_4</child>
-      <axis><xyz>0 0 -1</xyz></axis>
+      <parent>motor_4</parent>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
     </joint>
 
-    <!-- ================= ROTOR 5 – LEFT EDF (CYAN) ================= -->
-    <link name="rotor_5">
-      <pose>0 0.35 0 1.57 0 0</pose>
-
+    <!-- ================= MOTOR 5 – LEFT TILT MOTOR (CYAN) ================= -->
+    <link name='motor_5'>
+      <pose>0 0.5 0.045 -1.570 0 0</pose>
       <inertial>
         <mass>0.05</mass>
         <inertia>
-          <ixx>1e-4</ixx>
-          <iyy>1e-4</iyy> 0 0
-          <izz>1e-4</izz>
+          <ixx>0.0166704</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.0166704</iyy>
+          <iyz>0</iyz>
+          <izz>0.0167604</izz>
         </inertia>
       </inertial>
-
-      <collision name="c">
+      <collision name='motor_5_collision'>
+        <pose>0 0 0 0 0 0</pose>
         <geometry>
           <cylinder>
-            <radius>0.02</radius>
-            <length>0.04</length>
+            <length>0.02</length>
+            <radius>0.035</radius>
           </cylinder>
         </geometry>
+        <surface>
+          <contact>
+            <ode>
+              <min_depth>0.001</min_depth>
+            </ode>
+          </contact>
+          <friction>
+            <ode />
+          </friction>
+        </surface>
       </collision>
-
-      <visual name="motor_5">
+      <visual name='motor_5_visual'>
+        <pose>0 0 0 0 0 0</pose>
         <geometry>
           <cylinder>
+            <length>0.035</length>
             <radius>0.02</radius>
-            <length>0.04</length>
           </cylinder>
         </geometry>
         <material>
           <diffuse>0 1 1 1</diffuse>
+          <ambient>0 1 1 1</ambient>
         </material>
       </visual>
-
-      <visual name="prop_5">
-        <pose>0 0 -0.02 0 0 0</pose>
-        <geometry>
-          <box>
-          <size>0.15 0.01 0.005</size>
-          </box>
-        </geometry>
-        <material>
-          <diffuse>0 1 1 1</diffuse>
-        </material>
-      </visual>
+      <gravity>1</gravity>
+      <velocity_decay />
+      <self_collide>0</self_collide>
     </link>
 
-    <joint name="rotor_5_joint" type="revolute">
+    <joint name='motor_5_joint' type='revolute'>
+      <child>motor_5</child>
       <parent>base_link</parent>
+      <axis>
+        <xyz>-1 0 0</xyz>
+        <limit>
+          <lower>-1.57</lower>
+          <upper>1.57</upper>
+          <effort>-1</effort>
+          <velocity>-1</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+          <!-- <damping>1.0</damping> -->
+          <friction>1.0</friction>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
+    </joint>
+
+    <link name='rotor_5'>
+      <!-- roll -90 deg: prop +Z points outward (FRD -Y, left), matching CA_ROTOR5 axis -->
+      <pose>0 0.535 0.045 -1.57 0 0</pose>
+      <inertial>
+        <mass>0.005</mass>
+        <inertia>
+          <ixx>9.75e-07</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.000166704</iyy>
+          <iyz>0</iyz>
+          <izz>0.000167604</izz>
+        </inertia>
+      </inertial>
+      <visual name='rotor_5_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>0.8 0.8 0.8</scale>
+            <uri>model://standard_vtol/meshes/iris_prop_cw.dae</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0 1 1 1</diffuse>
+          <ambient>0 1 1 1</ambient>
+        </material>
+      </visual>
+      <gravity>1</gravity>
+      <velocity_decay />
+      <self_collide>0</self_collide>
+    </link>
+
+    <joint name='rotor_5_joint' type='revolute'>
       <child>rotor_5</child>
-      <axis><xyz>0 0 1</xyz></axis>
+      <parent>motor_5</parent>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-1e+16</lower>
+          <upper>1e+16</upper>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+        <use_parent_model_frame>1</use_parent_model_frame>
+      </axis>
     </joint>
 
     <!-- ================= PLUGINS – GENERUJĄ SIŁĘ ================= -->
@@ -553,8 +802,17 @@
       <jointName>rotor_0_joint</jointName>
       <linkName>rotor_0</linkName>
       <turningDirection>ccw</turningDirection>
+      <timeConstantUp>0.0125</timeConstantUp>
+      <timeConstantDown>0.025</timeConstantDown>
+      <maxRotVelocity>1500</maxRotVelocity>
+      <!-- hover at ~0.5 cmd: 2*k*(100+0.5*900)^2 ~= 22.8 N (2.32 kg) -->
+      <motorConstant>3.8e-05</motorConstant>
+      <momentConstant>0.06</momentConstant>
       <commandSubTopic>command/motor_speed</commandSubTopic>
       <motorNumber>0</motorNumber>
+      <rotorDragCoefficient>0.0000806428</rotorDragCoefficient>
+      <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+      <rotorVelocitySlowdownSim>20</rotorVelocitySlowdownSim>
       <motorType>velocity</motorType>
     </plugin>
 
@@ -563,9 +821,17 @@
             name="gz::sim::systems::MulticopterMotorModel">
       <jointName>rotor_1_joint</jointName>
       <linkName>rotor_1</linkName>
-      <turningDirection>ccw</turningDirection>
+      <turningDirection>cw</turningDirection>
+      <timeConstantUp>0.0125</timeConstantUp>
+      <timeConstantDown>0.025</timeConstantDown>
+      <maxRotVelocity>1500</maxRotVelocity>
+      <motorConstant>3.8e-05</motorConstant>
+      <momentConstant>0.06</momentConstant>
       <commandSubTopic>command/motor_speed</commandSubTopic>
       <motorNumber>1</motorNumber>
+      <rotorDragCoefficient>0.0000806428</rotorDragCoefficient>
+      <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+      <rotorVelocitySlowdownSim>20</rotorVelocitySlowdownSim>
       <motorType>velocity</motorType>
     </plugin>
 
@@ -574,9 +840,17 @@
             name="gz::sim::systems::MulticopterMotorModel">
       <jointName>rotor_2_joint</jointName>
       <linkName>rotor_2</linkName>
-      <turningDirection>cw</turningDirection>
+      <turningDirection>ccw</turningDirection>
+      <timeConstantUp>0.0125</timeConstantUp>
+      <timeConstantDown>0.025</timeConstantDown>
+      <maxRotVelocity>1500</maxRotVelocity>
+      <motorConstant>6e-06</motorConstant>
+      <momentConstant>0.0</momentConstant>
       <commandSubTopic>command/motor_speed</commandSubTopic>
       <motorNumber>2</motorNumber>
+      <rotorDragCoefficient>0.0000806428</rotorDragCoefficient>
+      <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+      <rotorVelocitySlowdownSim>20</rotorVelocitySlowdownSim>
       <motorType>velocity</motorType>
     </plugin>
 
@@ -586,8 +860,16 @@
       <jointName>rotor_3_joint</jointName>
       <linkName>rotor_3</linkName>
       <turningDirection>cw</turningDirection>
+      <timeConstantUp>0.0125</timeConstantUp>
+      <timeConstantDown>0.025</timeConstantDown>
+      <maxRotVelocity>1500</maxRotVelocity>
+      <motorConstant>6e-06</motorConstant>
+      <momentConstant>0.0</momentConstant>
       <commandSubTopic>command/motor_speed</commandSubTopic>
       <motorNumber>3</motorNumber>
+      <rotorDragCoefficient>0.0000806428</rotorDragCoefficient>
+      <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+      <rotorVelocitySlowdownSim>20</rotorVelocitySlowdownSim>
       <motorType>velocity</motorType>
     </plugin>
 
@@ -596,9 +878,17 @@
             name="gz::sim::systems::MulticopterMotorModel">
       <jointName>rotor_4_joint</jointName>
       <linkName>rotor_4</linkName>
-      <turningDirection>cw</turningDirection>
+      <turningDirection>ccw</turningDirection>
+      <timeConstantUp>0.0125</timeConstantUp>
+      <timeConstantDown>0.025</timeConstantDown>
+      <maxRotVelocity>1500</maxRotVelocity>
+      <motorConstant>6e-06</motorConstant>
+      <momentConstant>0.0</momentConstant>
       <commandSubTopic>command/motor_speed</commandSubTopic>
       <motorNumber>4</motorNumber>
+      <rotorDragCoefficient>0.0000806428</rotorDragCoefficient>
+      <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+      <rotorVelocitySlowdownSim>20</rotorVelocitySlowdownSim>
       <motorType>velocity</motorType>
     </plugin>
 
@@ -608,10 +898,79 @@
       <jointName>rotor_5_joint</jointName>
       <linkName>rotor_5</linkName>
       <turningDirection>cw</turningDirection>
+      <timeConstantUp>0.0125</timeConstantUp>
+      <timeConstantDown>0.025</timeConstantDown>
+      <maxRotVelocity>1500</maxRotVelocity>
+      <motorConstant>6e-06</motorConstant>
+      <momentConstant>0.0</momentConstant>
       <commandSubTopic>command/motor_speed</commandSubTopic>
       <motorNumber>5</motorNumber>
+      <rotorDragCoefficient>0.0000806428</rotorDragCoefficient>
+      <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+      <rotorVelocitySlowdownSim>20</rotorVelocitySlowdownSim>
       <motorType>velocity</motorType>
     </plugin>
 
+    <!-- ================= SERVO CONTROLLERS FOR TILTS ================= -->
+
+    <!-- servo 0 - motor_2 tilt (front) -->
+    <plugin filename="gz-sim-joint-position-controller-system"
+            name="gz::sim::systems::JointPositionController">
+      <joint_name>motor_2_joint</joint_name>
+      <sub_topic>servo_0</sub_topic>
+      <p_gain>40</p_gain>
+      <i_gain>0</i_gain>
+      <d_gain>0.5</d_gain>
+      <i_max>0.0</i_max>
+      <i_min>0.0</i_min>
+      <cmd_max>2</cmd_max>
+      <cmd_min>-2</cmd_min>
+      <err_max>0.2</err_max>
+    </plugin>
+
+    <!-- servo 1 - motor_3 tilt (right) -->
+    <plugin filename="gz-sim-joint-position-controller-system"
+            name="gz::sim::systems::JointPositionController">
+      <joint_name>motor_3_joint</joint_name>
+      <sub_topic>servo_1</sub_topic>
+      <p_gain>40</p_gain>
+      <i_gain>0</i_gain>
+      <d_gain>0.5</d_gain>
+      <i_max>0.0</i_max>
+      <i_min>0.0</i_min>
+      <cmd_max>2</cmd_max>
+      <cmd_min>-2</cmd_min>
+      <err_max>0.2</err_max>
+    </plugin>
+
+    <!-- servo 2 - motor_4 tilt (back) -->
+    <plugin filename="gz-sim-joint-position-controller-system"
+            name="gz::sim::systems::JointPositionController">
+      <joint_name>motor_4_joint</joint_name>
+      <sub_topic>servo_2</sub_topic>
+      <p_gain>40</p_gain>
+      <i_gain>0</i_gain>
+      <d_gain>0.5</d_gain>
+      <i_max>0.0</i_max>
+      <i_min>0.0</i_min>
+      <cmd_max>2</cmd_max>
+      <cmd_min>-2</cmd_min>
+      <err_max>0.2</err_max>
+    </plugin>
+
+    <!-- servo 3 - motor_5 tilt (left) -->
+    <plugin filename="gz-sim-joint-position-controller-system"
+            name="gz::sim::systems::JointPositionController">
+      <joint_name>motor_5_joint</joint_name>
+      <sub_topic>servo_3</sub_topic>
+      <p_gain>40</p_gain>
+      <i_gain>0</i_gain>
+      <d_gain>0.5</d_gain>
+      <i_max>0.0</i_max>
+      <i_min>0.0</i_min>
+      <cmd_max>2</cmd_max>
+      <cmd_min>-2</cmd_min>
+      <err_max>0.2</err_max>
+    </plugin>
   </model>
 </sdf>
