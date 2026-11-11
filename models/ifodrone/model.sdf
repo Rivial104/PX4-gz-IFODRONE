@@ -8,12 +8,13 @@
     <!-- ================= KADŁUB ================= -->
     <link name="base_link">
       <pose>0 0 0 0 0 0</pose>
+      <!-- +0.8 kg / inertia: booster EDF structure (4x0.2 kg at r=0.605 m, X config); spinning booster links carry 4x0.025 kg -->
       <inertial>
-        <mass>2.0</mass>
+        <mass>2.8</mass>
         <inertia>
-          <ixx>0.03</ixx>
-          <iyy>0.03</iyy>
-          <izz>0.05</izz>
+          <ixx>0.177</ixx>
+          <iyy>0.177</iyy>
+          <izz>0.343</izz>
         </inertia>
       </inertial>
 
@@ -793,6 +794,174 @@
       </axis>
     </joint>
 
+    <!-- ===== BOOSTER 0 – 4x QX-Motor 64 mm EDF, upward, shared motorNumber 6 ===== -->
+    <link name="booster_0">
+      <pose>0.428 0.428 0.045 0 0 0</pose>
+
+      <inertial>
+        <mass>0.025</mass>
+        <inertia>
+          <ixx>1e-5</ixx>
+          <iyy>1e-5</iyy>
+          <izz>1e-5</izz>
+        </inertia>
+      </inertial>
+
+      <collision name="c">
+        <geometry>
+          <cylinder>
+            <radius>0.035</radius>
+            <length>0.08</length>
+          </cylinder>
+        </geometry>
+      </collision>
+
+      <visual name="booster_0_visual">
+        <geometry>
+          <cylinder>
+            <radius>0.035</radius>
+            <length>0.08</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>1 0.5 0 1</ambient>
+          <diffuse>1 0.5 0 1</diffuse>
+        </material>
+      </visual>
+    </link>
+
+    <joint name="booster_0_joint" type="revolute">
+      <parent>base_link</parent>
+      <child>booster_0</child>
+      <axis><xyz>0 0 1</xyz></axis>
+    </joint>
+
+    <!-- ===== BOOSTER 1 – 4x QX-Motor 64 mm EDF, upward, shared motorNumber 6 ===== -->
+    <link name="booster_1">
+      <pose>-0.428 0.428 0.045 0 0 0</pose>
+
+      <inertial>
+        <mass>0.025</mass>
+        <inertia>
+          <ixx>1e-5</ixx>
+          <iyy>1e-5</iyy>
+          <izz>1e-5</izz>
+        </inertia>
+      </inertial>
+
+      <collision name="c">
+        <geometry>
+          <cylinder>
+            <radius>0.035</radius>
+            <length>0.08</length>
+          </cylinder>
+        </geometry>
+      </collision>
+
+      <visual name="booster_1_visual">
+        <geometry>
+          <cylinder>
+            <radius>0.035</radius>
+            <length>0.08</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>1 0.5 0 1</ambient>
+          <diffuse>1 0.5 0 1</diffuse>
+        </material>
+      </visual>
+    </link>
+
+    <joint name="booster_1_joint" type="revolute">
+      <parent>base_link</parent>
+      <child>booster_1</child>
+      <axis><xyz>0 0 1</xyz></axis>
+    </joint>
+
+    <!-- ===== BOOSTER 2 – 4x QX-Motor 64 mm EDF, upward, shared motorNumber 6 ===== -->
+    <link name="booster_2">
+      <pose>-0.428 -0.428 0.045 0 0 0</pose>
+
+      <inertial>
+        <mass>0.025</mass>
+        <inertia>
+          <ixx>1e-5</ixx>
+          <iyy>1e-5</iyy>
+          <izz>1e-5</izz>
+        </inertia>
+      </inertial>
+
+      <collision name="c">
+        <geometry>
+          <cylinder>
+            <radius>0.035</radius>
+            <length>0.08</length>
+          </cylinder>
+        </geometry>
+      </collision>
+
+      <visual name="booster_2_visual">
+        <geometry>
+          <cylinder>
+            <radius>0.035</radius>
+            <length>0.08</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>1 0.5 0 1</ambient>
+          <diffuse>1 0.5 0 1</diffuse>
+        </material>
+      </visual>
+    </link>
+
+    <joint name="booster_2_joint" type="revolute">
+      <parent>base_link</parent>
+      <child>booster_2</child>
+      <axis><xyz>0 0 1</xyz></axis>
+    </joint>
+
+    <!-- ===== BOOSTER 3 – 4x QX-Motor 64 mm EDF, upward, shared motorNumber 6 ===== -->
+    <link name="booster_3">
+      <pose>0.428 -0.428 0.045 0 0 0</pose>
+
+      <inertial>
+        <mass>0.025</mass>
+        <inertia>
+          <ixx>1e-5</ixx>
+          <iyy>1e-5</iyy>
+          <izz>1e-5</izz>
+        </inertia>
+      </inertial>
+
+      <collision name="c">
+        <geometry>
+          <cylinder>
+            <radius>0.035</radius>
+            <length>0.08</length>
+          </cylinder>
+        </geometry>
+      </collision>
+
+      <visual name="booster_3_visual">
+        <geometry>
+          <cylinder>
+            <radius>0.035</radius>
+            <length>0.08</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>1 0.5 0 1</ambient>
+          <diffuse>1 0.5 0 1</diffuse>
+        </material>
+      </visual>
+    </link>
+
+    <joint name="booster_3_joint" type="revolute">
+      <parent>base_link</parent>
+      <child>booster_3</child>
+      <axis><xyz>0 0 1</xyz></axis>
+    </joint>
+
     <!-- ================= PLUGINS – GENERUJĄ SIŁĘ ================= -->
     <!-- (DOKŁADNIE JAK WCZEŚNIEJ, NIE ZMIENIAJ) -->
 
@@ -905,6 +1074,92 @@
       <momentConstant>0.0</momentConstant>
       <commandSubTopic>command/motor_speed</commandSubTopic>
       <motorNumber>5</motorNumber>
+      <rotorDragCoefficient>0.0000806428</rotorDragCoefficient>
+      <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+      <rotorVelocitySlowdownSim>20</rotorVelocitySlowdownSim>
+      <motorType>velocity</motorType>
+    </plugin>
+
+    <!-- booster EDFs: one ESC signal (EC7, motorNumber 6) -->
+
+    <!-- booster 0 -->
+    <plugin filename="gz-sim-multicopter-motor-model-system"
+            name="gz::sim::systems::MulticopterMotorModel">
+      <jointName>booster_0_joint</jointName>
+      <linkName>booster_0</linkName>
+      <turningDirection>ccw</turningDirection>
+      <timeConstantUp>0.0125</timeConstantUp>
+      <timeConstantDown>0.025</timeConstantDown>
+      <maxRotVelocity>1500</maxRotVelocity>
+      <!-- QX-Motor 64 mm EDF fit: omega = 125 + 875*u (SIM_GZ_EC_MIN7/MAX7 125/1000) -> 23.2 N @ u=1, 7.4 N @ u=0.5 (2370 g / 750 g datasheet), 0.36 N idle -->
+      <motorConstant>2.325e-05</motorConstant>
+      <!-- CA models booster KM = 0; CW/CCW pairs cancel -->
+      <momentConstant>0.0</momentConstant>
+      <commandSubTopic>command/motor_speed</commandSubTopic>
+      <motorNumber>6</motorNumber>
+      <rotorDragCoefficient>0.0000806428</rotorDragCoefficient>
+      <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+      <rotorVelocitySlowdownSim>20</rotorVelocitySlowdownSim>
+      <motorType>velocity</motorType>
+    </plugin>
+
+    <!-- booster 1 -->
+    <plugin filename="gz-sim-multicopter-motor-model-system"
+            name="gz::sim::systems::MulticopterMotorModel">
+      <jointName>booster_1_joint</jointName>
+      <linkName>booster_1</linkName>
+      <turningDirection>cw</turningDirection>
+      <timeConstantUp>0.0125</timeConstantUp>
+      <timeConstantDown>0.025</timeConstantDown>
+      <maxRotVelocity>1500</maxRotVelocity>
+      <!-- QX-Motor 64 mm EDF fit: omega = 125 + 875*u (SIM_GZ_EC_MIN7/MAX7 125/1000) -> 23.2 N @ u=1, 7.4 N @ u=0.5 (2370 g / 750 g datasheet), 0.36 N idle -->
+      <motorConstant>2.325e-05</motorConstant>
+      <!-- CA models booster KM = 0; CW/CCW pairs cancel -->
+      <momentConstant>0.0</momentConstant>
+      <commandSubTopic>command/motor_speed</commandSubTopic>
+      <motorNumber>6</motorNumber>
+      <rotorDragCoefficient>0.0000806428</rotorDragCoefficient>
+      <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+      <rotorVelocitySlowdownSim>20</rotorVelocitySlowdownSim>
+      <motorType>velocity</motorType>
+    </plugin>
+
+    <!-- booster 2 -->
+    <plugin filename="gz-sim-multicopter-motor-model-system"
+            name="gz::sim::systems::MulticopterMotorModel">
+      <jointName>booster_2_joint</jointName>
+      <linkName>booster_2</linkName>
+      <turningDirection>ccw</turningDirection>
+      <timeConstantUp>0.0125</timeConstantUp>
+      <timeConstantDown>0.025</timeConstantDown>
+      <maxRotVelocity>1500</maxRotVelocity>
+      <!-- QX-Motor 64 mm EDF fit: omega = 125 + 875*u (SIM_GZ_EC_MIN7/MAX7 125/1000) -> 23.2 N @ u=1, 7.4 N @ u=0.5 (2370 g / 750 g datasheet), 0.36 N idle -->
+      <motorConstant>2.325e-05</motorConstant>
+      <!-- CA models booster KM = 0; CW/CCW pairs cancel -->
+      <momentConstant>0.0</momentConstant>
+      <commandSubTopic>command/motor_speed</commandSubTopic>
+      <motorNumber>6</motorNumber>
+      <rotorDragCoefficient>0.0000806428</rotorDragCoefficient>
+      <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
+      <rotorVelocitySlowdownSim>20</rotorVelocitySlowdownSim>
+      <motorType>velocity</motorType>
+    </plugin>
+
+    <!-- booster 3 -->
+    <plugin filename="gz-sim-multicopter-motor-model-system"
+            name="gz::sim::systems::MulticopterMotorModel">
+      <jointName>booster_3_joint</jointName>
+      <linkName>booster_3</linkName>
+      <turningDirection>cw</turningDirection>
+      <timeConstantUp>0.0125</timeConstantUp>
+      <timeConstantDown>0.025</timeConstantDown>
+      <maxRotVelocity>1500</maxRotVelocity>
+      <!-- QX-Motor 64 mm EDF fit: omega = 125 + 875*u (SIM_GZ_EC_MIN7/MAX7 125/1000) -> 23.2 N @ u=1, 7.4 N @ u=0.5 (2370 g / 750 g datasheet), 0.36 N idle -->
+      <motorConstant>2.325e-05</motorConstant>
+      <!-- CA models booster KM = 0; CW/CCW pairs cancel -->
+      <momentConstant>0.0</momentConstant>
+      <commandSubTopic>command/motor_speed</commandSubTopic>
+      <motorNumber>6</motorNumber>
       <rotorDragCoefficient>0.0000806428</rotorDragCoefficient>
       <rollingMomentCoefficient>1e-06</rollingMomentCoefficient>
       <rotorVelocitySlowdownSim>20</rotorVelocitySlowdownSim>
