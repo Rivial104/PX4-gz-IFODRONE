@@ -794,7 +794,7 @@
       </axis>
     </joint>
 
-    <!-- ===== BOOSTER 0 – 4x QX-Motor 64 mm EDF, upward, shared motorNumber 6 ===== -->
+    <!-- ===== BOOSTER 0 – 4x QX-Motor 64 mm EDF, upward, shared motorNumber 6, CCW (blue prop) ===== -->
     <link name="booster_0">
       <pose>0.428 0.428 0.045 0 0 0</pose>
 
@@ -828,6 +828,18 @@
           <diffuse>1 0.5 0 1</diffuse>
         </material>
       </visual>
+      <visual name="booster_0_prop">
+        <pose>0 0 0.045 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.064 0.012 0.006</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0 0.3 1 1</ambient>
+          <diffuse>0 0.3 1 1</diffuse>
+        </material>
+      </visual>
     </link>
 
     <joint name="booster_0_joint" type="revolute">
@@ -836,7 +848,7 @@
       <axis><xyz>0 0 1</xyz></axis>
     </joint>
 
-    <!-- ===== BOOSTER 1 – 4x QX-Motor 64 mm EDF, upward, shared motorNumber 6 ===== -->
+    <!-- ===== BOOSTER 1 – 4x QX-Motor 64 mm EDF, upward, shared motorNumber 6, CW (black prop) ===== -->
     <link name="booster_1">
       <pose>-0.428 0.428 0.045 0 0 0</pose>
 
@@ -870,6 +882,18 @@
           <diffuse>1 0.5 0 1</diffuse>
         </material>
       </visual>
+      <visual name="booster_1_prop">
+        <pose>0 0 0.045 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.064 0.012 0.006</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0.1 0.1 0.1 1</ambient>
+          <diffuse>0.1 0.1 0.1 1</diffuse>
+        </material>
+      </visual>
     </link>
 
     <joint name="booster_1_joint" type="revolute">
@@ -878,7 +902,7 @@
       <axis><xyz>0 0 1</xyz></axis>
     </joint>
 
-    <!-- ===== BOOSTER 2 – 4x QX-Motor 64 mm EDF, upward, shared motorNumber 6 ===== -->
+    <!-- ===== BOOSTER 2 – 4x QX-Motor 64 mm EDF, upward, shared motorNumber 6, CCW (blue prop) ===== -->
     <link name="booster_2">
       <pose>-0.428 -0.428 0.045 0 0 0</pose>
 
@@ -912,6 +936,18 @@
           <diffuse>1 0.5 0 1</diffuse>
         </material>
       </visual>
+      <visual name="booster_2_prop">
+        <pose>0 0 0.045 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.064 0.012 0.006</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0 0.3 1 1</ambient>
+          <diffuse>0 0.3 1 1</diffuse>
+        </material>
+      </visual>
     </link>
 
     <joint name="booster_2_joint" type="revolute">
@@ -920,7 +956,7 @@
       <axis><xyz>0 0 1</xyz></axis>
     </joint>
 
-    <!-- ===== BOOSTER 3 – 4x QX-Motor 64 mm EDF, upward, shared motorNumber 6 ===== -->
+    <!-- ===== BOOSTER 3 – 4x QX-Motor 64 mm EDF, upward, shared motorNumber 6, CW (black prop) ===== -->
     <link name="booster_3">
       <pose>0.428 -0.428 0.045 0 0 0</pose>
 
@@ -952,6 +988,18 @@
         <material>
           <ambient>1 0.5 0 1</ambient>
           <diffuse>1 0.5 0 1</diffuse>
+        </material>
+      </visual>
+      <visual name="booster_3_prop">
+        <pose>0 0 0.045 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.064 0.012 0.006</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0.1 0.1 0.1 1</ambient>
+          <diffuse>0.1 0.1 0.1 1</diffuse>
         </material>
       </visual>
     </link>
